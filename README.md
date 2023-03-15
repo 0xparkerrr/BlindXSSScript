@@ -13,7 +13,7 @@ The repo has a payload_template.txt file. For every parameter that's on your tar
 
 With a text editor, use the search and replace tool with the following keywords (angle brackets included):
 - <URL_HERE> : Your server
-- <PARAM>
+- PARAM : include angle brackets. Not sure why markdown is not accepting it.
 
 Do the same with all files, each having different parameters.
 
