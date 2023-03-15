@@ -17,10 +17,6 @@ with open('username.txt', 'r') as l:
 	for line in l:
 		num_of_lines += 1
 		
-
-
-
-
 def inject_payloads():
 	soo = 0
 	
@@ -40,8 +36,6 @@ def inject_payloads():
 					print('URL: {}\n'.format(r.url))
 				else:
 					print('error')
-
-
 
 print('Detected {0} payloads . . . Starting POST requests.'.format(num_of_lines))	
 inject_payloads()
