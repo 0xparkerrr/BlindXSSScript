@@ -1,6 +1,8 @@
 # BlindXSSScript
 Originally made to enumerate a HackTheBox XSS exercise with a registration form, this Python script sends HTTP requests to a target host with a list of payloads. To see how it was made, check out my blogpost on it [here](https://www.andrewpark.blog/blind-xss-htb).
 
+![Script Gif](https://www.andrewpark.blog/_next/static/media/Animation.ed44d728.gif)
+
 **NOTE: The code has not been polished. I made it up for the sole purpose of completing the exercise. You could say it's still in development.**
 
 ## Usage
